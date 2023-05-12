@@ -12,8 +12,8 @@ test_size = 0.15
 def get_dataset():
     # Getting all data from data path:
     try:
-        data = np.load('Data/data.npy')
-        labels = np.load('Data/labels.npy')
+        data = np.load('Data/X.npy')
+        labels = np.load('Data/Y.npy')
     except:
         print("Error loading data")
     data, data_test, labels, labels_test = train_test_split(data, labels, test_size=test_size, random_state=42)
