@@ -1,0 +1,31 @@
+## Test 1 Report
+
+### Methodology:
+
+In this test, the model was trained for 500 epochs with a batch size of 32. The learning rate used was 0.0001. Dropout rates for the architecture were set in accordance with the initial recommendation. 
+
+### Results:
+
+The model achieved a training accuracy of 88.78% and a validation accuracy of 84.26%. The loss on the training set was 0.3709, and on the validation set it was 0.4981. 
+
+The model's performance improved consistently throughout the training process. From the snippets of the training log, it's evident that both the training and validation losses decrease steadily over time. The model seems to be learning effectively from the data.
+
+### Discussion:
+
+The model's validation accuracy is slightly lower than its training accuracy, suggesting a mild overfitting to the training data. Overfitting refers to a model that models the training data too well, often at the expense of its performance on new, unseen data. 
+
+The overfitting is not severe, but it might be beneficial to apply strategies to reduce it. Adjusting the dropout rates is one such strategy, which essentially involves randomly setting a fraction of input units to 0 at each update during training time, which helps prevent overfitting. However, it was noted that the architecture of the model should remain unchanged for the next test.
+
+### Recommendations for Next Test:
+
+For the next test, the following changes are recommended:
+
+1. **Learning rate:** Consider increasing the learning rate slightly to 0.0005 or 0.001. A higher learning rate could help the model to learn more quickly, but care should be taken as too high a learning rate could cause the model to overshoot the optimal solution.
+
+2. **Batch size:** Consider increasing the batch size to 64 or 128. Larger batch sizes can lead to more stable and reliable gradient descent updates.
+
+3. **Epochs:** The number of epochs seems to be sufficient at this stage, as the model is still improving after 500 epochs. For the next test, it's recommended to keep the number of epochs at 500.
+
+4. **Dropout rates:** In the next test, you might want to increase the dropout rates slightly, say by 0.1, to attempt to mitigate the overfitting. However, as the initial specification requests no changes to the architecture, this can be considered for future tests.
+
+Please note that these are initial recommendations and may need to be further adjusted based on the results of the next test. The aim is to improve the balance between bias (underfitting) and variance (overfitting) to improve the model's performance on the validation set.

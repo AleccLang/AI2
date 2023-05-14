@@ -1,0 +1,23 @@
+## Preliminary Model Report
+
+### Model Architecture
+
+The initial model we have proposed is a simple one, featuring a flatten layer and two dense layers. 
+
+#### Layers:
+
+1. **Flatten Layer:** The Flatten layer reshapes the multi-dimensional input into a one-dimensional array. We start with this layer to convert our 64x64 pixel images into a flat vector. This is necessary because a Dense layer expects a 1D vector as input.
+
+2. **Dense Layer (128 neurons, ReLU activation):** This is a fully connected layer where each input node is connected to each output node. We use 128 neurons (also known as nodes) in this layer. The 'ReLU' (Rectified Linear Unit) activation function is used which allows for faster and more effective training. Its simplicity helps to prevent overfitting.
+
+3. **Dense Layer (10 neurons, Softmax activation):** The last layer is also a fully connected layer with 10 neurons, corresponding to the 10 possible classes (assuming the labels are integers from 0 to 9). The 'Softmax' activation function is used as it can provide a probability distribution over the 10 classes, meaning the output can be interpreted as the model's confidence that the input image corresponds to each of the 10 classes.
+
+### Model Simplicity:
+
+The purpose of starting with such a simple model is to establish a baseline for further experiments. This basic model is fast to train and can provide a good 'sanity check' to ensure our data preprocessing steps are correct and that our training loop is functioning as expected. 
+
+From here, we can begin to incrementally add complexity to our model, such as adding Convolutional layers or additional Dense layers, and then assess whether these changes improve the model's performance. 
+
+This iterative approach is a common strategy in deep learning, as it can help to prevent 'overfitting' to the training data (which can occur if the model is too complex) and can also save computational resources. 
+
+In the next steps, we'll analyze the performance of this model and consider appropriate modifications based on the results.

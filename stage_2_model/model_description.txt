@@ -1,0 +1,27 @@
+## Modified Model Report
+
+### Model Architecture
+
+For the next step in our analysis, we have proposed a slightly more complex model that introduces convolutional layers and dropout regularization. The architecture includes a Conv2D layer, a MaxPooling2D layer, two Dropout layers, a Flatten layer, and two Dense layers. 
+
+#### Layers:
+
+1. **Conv2D Layer (32 filters, 3x3 kernel size, ReLU activation, 'he_uniform' kernel initializer):** This layer applies 32 convolution filters to the input image. Each filter is of size 3x3. The Conv2D layer is particularly suited to processing image data, as it can capture spatial features (such as edges and shapes) in the input data. The ReLU activation function is used to introduce non-linearity, and the 'he_uniform' kernel initializer is used to initialize the layer's weights.
+
+2. **MaxPooling2D Layer (2x2 pool size):** This layer follows the Conv2D layer and is used to down-sample the input along its spatial dimensions (width and height), which helps to reduce the computational complexity of the model, while still preserving the most salient features.
+
+3. **Dropout Layer (0.2 dropout rate):** The Dropout layer randomly sets a fraction (20% in this case) of input units to 0 at each update during training, which helps prevent overfitting. It introduces a form of regularization by effectively training a subset of the network on each input.
+
+4. **Flatten Layer:** The Flatten layer reshapes the multi-dimensional input into a one-dimensional array. This prepares the output of the previous layers for input into the Dense layer.
+
+5. **Dense Layer (128 neurons, ReLU activation):** This is a fully connected layer where each input node is connected to each output node. We use 128 neurons in this layer. The ReLU activation function is used, allowing for faster and more effective training.
+
+6. **Dropout Layer (0.5 dropout rate):** Another Dropout layer is used, this time with a higher dropout rate of 50%. This continues to provide regularization in the network.
+
+7. **Dense Layer (10 neurons, Softmax activation):** The last layer is a fully connected layer with 10 neurons, corresponding to the 10 possible classes (assuming the labels are integers from 0 to 9). The Softmax activation function is used to provide a probability distribution over the 10 classes.
+
+### Model Complexity:
+
+This model introduces additional complexity compared to the initial model, with the introduction of Conv2D, MaxPooling2D, and Dropout layers. The aim is to improve performance on the training data without overfitting. The Conv2D and MaxPooling2D layers are expected to better capture the spatial features present in the image data, while the Dropout layers provide regularization to help prevent overfitting. 
+
+It's important to note that increasing model complexity can lead to longer training times, and it does not always guarantee better performance. Therefore, we'll continue to monitor the model's performance closely as we incrementally increase its complexity. Based on the results, we can decide whether further modifications or adjustments are necessary.

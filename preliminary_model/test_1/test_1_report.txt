@@ -1,0 +1,30 @@
+## Test 1: Preliminary Model Report
+
+### Model Architecture
+
+The initial model used a simple architecture consisting of a Flatten layer followed by two Dense layers. The model was designed to establish a baseline and ensure the functionality of data preprocessing and the training loop.
+
+### Training Configuration
+
+- Number of Epochs: 500
+- Learning Rate: 0.0001
+- Batch Size: 32
+
+### Training Results
+
+After training the model for 500 epochs, the following results were obtained on the validation set:
+
+- Final Training Accuracy: 66.5%
+- Final Training Loss: 1.237
+- Final Validation Accuracy: 63.7%
+- Final Validation Loss: 1.262
+
+### Observations
+
+The model showed steady improvement in accuracy on both the training and validation sets over the course of 500 epochs. The results suggest that the model could potentially benefit from training for more epochs.
+
+### Recommendations for Further Testing
+
+Based on the observed trend of increasing accuracy, it is recommended to increase the number of epochs in the subsequent tests. Additionally, minor adjustments to hyperparameters such as learning rate and batch size could be explored to potentially enhance the model's performance.
+
+By extending the training duration and making slight modifications to the hyperparameters, it is expected that the model will have an opportunity to further improve its accuracy on the validation set.

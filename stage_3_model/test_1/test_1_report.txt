@@ -1,0 +1,31 @@
+## Test 1 Report for the New Model
+
+### Model Training and Validation
+
+The model was trained for 500 epochs with a learning rate of 0.0004 and a batch size of 128. Dropout rates of 0.4, 0.5, and 0.6 were used in the respective Dropout layers to prevent overfitting.
+
+The model started with low accuracy and high loss in both the training and validation datasets. Over time, the model's performance improved significantly, with the training accuracy reaching 91.39% and the validation accuracy reaching 90.31% by the end of the 500 epochs.
+
+### Final Training Results:
+
+- Accuracy: 91.39%
+- Loss: 0.23
+
+These results show that the model was able to learn well from the training dataset, with over 91% accuracy. However, the relatively high loss indicates there might be some room for further improvement.
+
+### Final Validation Results:
+
+- Accuracy: 90.31%
+- Loss: 0.38
+
+The model also performed well on the validation dataset, with an accuracy of over 90%. This indicates that the model was able to generalize well and did not overfit the training data. However, similar to the training results, the relatively high loss suggests that there is room for improvement.
+
+### Discussion:
+
+The model exhibited steady improvement over the course of 500 epochs, indicating that the learning rate and batch size were appropriate for this problem. The Dropout layers seem to have helped the model avoid overfitting, as evidenced by the similar accuracy scores in the training and validation datasets.
+
+The results suggest that the added complexity in this model has helped to improve its performance compared to the previous model. Nevertheless, the relatively high loss in both the training and validation results could indicate that the model may still be underfitting the data. This could be addressed by further increasing the model complexity, fine-tuning the learning rate, or running the model for additional epochs.
+
+It's important to note that while increasing model complexity can improve performance, it can also lead to longer training times and the risk of overfitting. Therefore, any changes should be made with careful consideration and close monitoring of the model's performance.
+
+In conclusion, the results of this test indicate that the new model is a step in the right direction, but further adjustments and tests will be needed to continue improving its performance.

@@ -1,0 +1,28 @@
+## Test 3: Modified Learning Rate and Epoch Count
+
+### Model Architecture
+
+The model architecture used in Test 3 remained the same as the preliminary model, featuring a Flatten layer followed by two Dense layers.
+
+### Training Configuration
+
+- Number of Epochs: 1000
+- Learning Rate: 0.0003
+- Batch Size: 32
+
+### Training Results
+
+After training the model for 1000 epochs with the adjusted learning rate, the following results were obtained on the validation set:
+
+- Final Training Accuracy: 86.1%
+- Final Training Loss: 0.487
+- Final Validation Accuracy: 80.4%
+- Final Validation Loss: 0.707
+
+### Observations
+
+With the increased number of epochs and a slightly adjusted learning rate, the model's accuracy and validation loss showed improvement compared to previous tests. However, it is worth noting that the accuracy started to level out, suggesting that the model may be approaching its limit in learning with the current architecture.
+
+### Final Test
+
+Considering the leveling out of accuracy in Test 3, it would be beneficial to conduct one final test to assess the model's performance before making modifications to the architecture. This will help us determine whether the model has reached its optimal performance or if further adjustments are needed.

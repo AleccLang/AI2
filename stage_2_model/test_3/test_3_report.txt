@@ -1,0 +1,27 @@
+## Test 3 Report
+
+### Methodology:
+
+The model was trained for 500 epochs with a batch size of 64. A learning rate of 0.0003 was used. The dropout rates were adjusted to 0.3 and 0.6 to reduce overfitting. 
+
+### Results:
+
+The model achieved a training accuracy of 87.20% and a validation accuracy of 84.99%. The loss on the training set was 0.3911, and on the validation set, it was 0.4904.
+
+The training log shows consistent improvement in both training and validation accuracies and losses. The losses consistently decrease over time, demonstrating that the model is effectively learning from the data.
+
+### Discussion:
+
+The model's validation accuracy is still slightly lower than its training accuracy, indicating a small amount of overfitting. However, the gap between training and validation accuracies has reduced compared to the previous test, suggesting that increasing the dropout rates has helped to some extent. 
+
+### Recommendations for Next Test:
+
+1. **Learning rate:** The learning rate of 0.0003 seems to be working well. It might be beneficial to experiment with a slightly higher learning rate, such as 0.0004, to see if it helps the model learn faster without causing instability.
+
+2. **Batch size:** The increased batch size of 64 appears to be beneficial. You might want to further increase the batch size to 128 to see if it leads to more stable and reliable gradient descent updates.
+
+3. **Epochs:** Keeping the number of epochs at 500 still appears to be suitable, as the model continues to improve throughout this period.
+
+4. **Dropout rates:** The adjustment of dropout rates seems to have mitigated overfitting to some extent. You might want to experiment further with these values, perhaps trying a range of 0.2-0.5, to see if a balance can be struck that further reduces overfitting without compromising the model's ability to learn effectively from the training data.
+
+As always, these recommendations should be adjusted based on the results of the subsequent test. The ultimate goal is to achieve the best possible balance between bias and variance, thereby enhancing the model's performance on unseen data.

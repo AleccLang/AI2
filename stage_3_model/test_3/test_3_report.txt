@@ -1,0 +1,23 @@
+# Test 3 Report
+
+## Methodology
+
+The third test of our model involved the implementation of a 500-epoch training run with a learning rate of 0.0005. The model was configured with a dropout rate of 0.4, 0.4, and 0.6 on respective layers, with a reduction of 0.1 applied to the second layer and a reversion to its original value on the third layer from the previous test.
+
+## Results
+
+Our training outcomes showed notable improvements over the training period. The initial accuracy at epoch 0 was just 0.0976, which increased gradually over time. By epoch 10, the accuracy had risen to 0.1486, and the corresponding loss had decreased from 2.3042 to 2.2906.
+
+Substantial improvements were observed by the 100th epoch, with the accuracy reaching 0.6695 and the loss dropping significantly to 0.9716. This trend continued, and by the 200th epoch, the accuracy had risen to 0.7623, and the loss had decreased to 0.6898.
+
+The model's performance kept improving, reaching an accuracy of 0.8053 and a loss of 0.5267 by the 270th epoch. As the training progressed to the 400th epoch, the accuracy had increased to 0.8387, and the loss had reduced to 0.4053.
+
+The final training results at the 500th epoch demonstrated an accuracy of 0.8423 and a loss of 0.3952. 
+
+In terms of validation, the model achieved a final accuracy of 0.8959 and a loss of 0.3354. These results indicate that our model is generalizing well and not overfitting to the training data.
+
+## Conclusions and Next Steps
+
+Test 3 demonstrated successful learning and a significant improvement in model performance. The alterations in dropout rate showed a positive impact on the model's ability to generalize, reflected in the increased accuracy and decreased loss values over time.
+
+Despite these improvements, there's still scope to further optimize our model. The next logical step in the process is to add an additional level of complexity to the model. This could be done by increasing the number of layers or the number of units within each layer, introducing more complex layer types, or potentially applying regularization techniques. Each of these approaches will aim to increase the model's capacity to learn more complex representations of the data.

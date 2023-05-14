@@ -1,0 +1,31 @@
+## Modified Model Report
+
+### Model Architecture
+
+In our continued efforts to refine the model, we have introduced an additional level of complexity. The architecture now includes two Conv2D layers, two MaxPooling2D layers, three Dropout layers, a Flatten layer, and two Dense layers. 
+
+#### Layers:
+
+1. **First Conv2D Layer (32 filters, 3x3 kernel size, ReLU activation, 'he_uniform' kernel initializer):** This layer functions as described in the previous model.
+
+2. **First MaxPooling2D Layer (2x2 pool size):** This layer also functions as described previously, reducing the spatial dimensions of the output from the first Conv2D layer.
+
+3. **First Dropout Layer (0.4 dropout rate):** This Dropout layer randomly sets 40% of input units to 0 at each update during training, which helps prevent overfitting.
+
+4. **Second Conv2D Layer (64 filters, 3x3 kernel size, ReLU activation, 'he_uniform' kernel initializer):** This layer is similar to the first Conv2D layer, but it has more filters to capture a wider variety of features in the input.
+
+5. **Second MaxPooling2D Layer (2x2 pool size):** This layer further reduces the spatial dimensions of the output from the second Conv2D layer.
+
+6. **Second Dropout Layer (0.5 dropout rate):** This Dropout layer randomly sets 50% of input units to 0 at each update during training, providing additional regularization.
+
+7. **Flatten Layer:** The Flatten layer reshapes the multi-dimensional input into a one-dimensional array.
+
+8. **Dense Layer (128 neurons, ReLU activation):** This fully connected layer functions as described previously.
+
+9. **Third Dropout Layer (0.6 dropout rate):** This Dropout layer, with a higher dropout rate of 60%, provides further regularization.
+
+10. **Output Dense Layer (10 neurons, Softmax activation):** This output layer is the same as in the previous model, providing a probability distribution over the 10 classes.
+
+### Model Complexity:
+
+This model introduces a higher level of complexity with the addition of another Conv2D layer, MaxPooling2D layer, and Dropout layer. The new Conv2D layer with more filters is expected to capture a wider range of features from the input, and the additional Dropout layer increases regularization to mitigate overfitting. However, the increased model complexity could lead to longer training times, so monitoring the model's performance remains critical. Based on the results, further modifications or adjustments may be necessary.

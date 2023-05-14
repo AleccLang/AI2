@@ -1,0 +1,29 @@
+## Test 4 Report
+
+### Methodology:
+
+The model was trained for 500 epochs with an increased batch size of 128. A higher learning rate of 0.0004 was used. The first dropout rate was adjusted to 0.4, while the second dropout remained at 0.6.
+
+### Results:
+
+The model achieved a training accuracy of 83.81% and a validation accuracy of 85.96%. The loss on the training set was 0.4700, and on the validation set, it was 0.4947.
+
+The training log shows that the model is learning from the data, with a decrease in loss over time. A significant improvement is noted in the validation accuracy, which now surpasses the training accuracy, indicating a reduced overfitting compared to previous tests.
+
+### Discussion:
+
+The experiment with a higher learning rate and batch size seems to have resulted in more robust learning, as evidenced by the higher validation accuracy. The adjustments in dropout rates have likely contributed to a better generalization of the model, with validation accuracy now surpassing training accuracy. This is a positive step towards reducing overfitting.
+
+### Recommendations for Next Test:
+
+1. **Learning rate:** The increase in learning rate to 0.0004 has yielded promising results. You could maintain this rate in the next test, or experiment with further adjustments based on the performance trends observed.
+
+2. **Batch size:** The increase in batch size to 128 has shown improvements. Further increasing the batch size could be considered for future tests if computational resources allow.
+
+3. **Epochs:** The model seems to benefit from a high number of epochs (500). However, it would be useful to monitor if the validation accuracy plateaus or starts decreasing towards the later epochs, indicating overfitting. If so, a callback such as EarlyStopping could be employed.
+
+4. **Dropout rates:** The adjustment of dropout rates appears to have further mitigated overfitting. You might want to keep these rates for now, considering the higher validation accuracy achieved.
+
+5. **Model complexity:** As you suggested, adding an additional layer of complexity to the model might be the next step. You could consider adding more convolutional layers or introducing regularization techniques such as L1/L2 regularization. However, bear in mind that increasing complexity should be done with caution to avoid overfitting.
+
+Remember that these recommendations are merely suggestions and should be considered in conjunction with your specific objectives, data constraints, and computational resources. Monitoring the learning curve will provide valuable insights to guide these decisions.

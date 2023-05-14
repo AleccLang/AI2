@@ -1,0 +1,1 @@
+test 4 is the same as test 3, but with 512 nodes in the dense layer, rather than 128.

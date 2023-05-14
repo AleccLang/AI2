@@ -1,0 +1,36 @@
+# Test 2 Report
+
+**Test Parameters:**
+- Epochs: 500
+- Learning rate: 0.0005
+- Batch size: 128
+- Dropout rates: 0.4, 0.5, 0.5 (The last one was decreased by 0.1 from the previous test)
+
+**Results:**
+
+**Training:**
+- Final accuracy: 97.27%
+- Final loss: 0.07586
+
+**Validation:**
+- Final accuracy: 90.8%
+- Final loss: 0.3632
+
+**Observations:**
+
+1. **Training Progress:** Looking at the training logs, the model was able to learn successfully over the training period. The accuracy increased substantially from 9.70% in the first epoch to a final accuracy of 97.27%. The loss value also decreased significantly from 2.3038 to 0.07586. This indicates that the model was able to learn and improve its predictions over the training period.
+
+2. **Validation Performance:** The model achieved a final validation accuracy of 90.8%. This is a good result, but it is somewhat lower than the training accuracy. The validation loss was also higher than the training loss, with a final value of 0.3632. This difference between training and validation metrics suggests that the model may be overfitting to the training data to some degree. Overfitting is when a model learns the training data too well and performs poorly on unseen data because it has difficulty generalizing from its training.
+
+3. **Comparison to Previous Test:** Compared to the previous test, the final training accuracy in this test has increased, and the training loss has decreased, indicating improved performance on the training set. The validation accuracy and loss have also improved, which suggests that the model is performing better on unseen data as well. The reduction in the last dropout rate appears to have improved the performance.
+
+**Recommendations:**
+
+While this model's performance is quite good, the discrepancy between training and validation results suggests there might be some overfitting. To address this, the following strategies could be considered for future tests:
+
+- **Regularization:** Regularization methods, such as L1 or L2 regularization, could be used to prevent overfitting by penalizing large weights in the model.
+- **Increase Dropout Rate:** Increasing the dropout rate could help reduce overfitting by preventing complex co-adaptations on training data.
+- **Data Augmentation:** Data augmentation techniques could be used to increase the size of the training set, which can help improve the model's ability to generalize.
+- **Early Stopping:** This involves stopping the training process when performance on the validation set starts to degrade, preventing the model from overfitting to the training data.
+
+Despite these recommendations, the current model has shown strong performance and is likely to perform well on similar unseen data.

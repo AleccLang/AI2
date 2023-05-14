@@ -1,0 +1,23 @@
+**Comparison of Test 1 and Test 2:**
+
+**Learning Rate and Batch Size:**
+In Test 2, we increased the learning rate from 0.0001 (Test 1) to 0.0005 and the batch size from 32 (Test 1) to 64 as per the recommendations made after Test 1. 
+
+**Accuracy:**
+In terms of accuracy, Test 2 saw a small decrease in training accuracy (87.51% vs 88.78% in Test 1), but a slight increase in validation accuracy (85.96% vs 84.26% in Test 1). This is a positive result, as it indicates a reduction in overfitting, and suggests that the model is generalizing better to unseen data.
+
+**Loss:**
+The loss on the training set decreased from 0.3709 in Test 1 to 0.3332 in Test 2, indicating the model was able to learn the training data more effectively in Test 2. However, the validation loss increased slightly from 0.4981 in Test 1 to 0.5467 in Test 2. This again suggests the possibility of overfitting, though it is not severe.
+
+**Overfitting:**
+The overfitting seems to have reduced slightly in Test 2 as the gap between training and validation accuracy has reduced compared to Test 1. However, the increase in validation loss in Test 2 suggests that there might still be some degree of overfitting.
+
+**Recommendations for Next Steps:**
+
+1. **Learning Rate:** Since we saw a decrease in training accuracy and an increase in validation loss in Test 2, it might be worth exploring a slightly lower learning rate (e.g., 0.0003) in the next test to see if this improves the balance between training and validation performance.
+
+2. **Batch Size:** The increase in batch size seemed to have a positive impact on reducing overfitting. We could maintain this batch size for the next test.
+
+3. **Regularization:** Since the architecture should remain unchanged, and we still observe a slight overfitting, we could experiment with other non-structural regularization methods. For example, early stopping could be implemented, where the training is stopped when the validation loss starts to increase, to prevent overfitting.
+
+4. **Epochs:** The number of epochs seems to be sufficient, as the model continues to improve over time. We should maintain this for the next test.
