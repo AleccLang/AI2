@@ -1,4 +1,3 @@
-# Import necessary modules
 from keras.layers import Conv2D, MaxPooling2D, Dropout
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers.legacy import Adam
 from tensorflow.keras.callbacks import CSVLogger
 from tensorflow.keras.utils import plot_model
-
 
 def load_data():
     # Load data from .npy files
@@ -131,7 +129,7 @@ def compile_and_train_model(model, X_train, X_val, Y_train, Y_val):
     csv_logger = CSVLogger(f'training_log_lr={learning_rate}_batch={batch_size}_epochs={epochs}.csv',
                            append=True, separator=';')
 
-    model.compile(optimizer=Adam(learning_rate=learning_rate),  # changed this line
+    model.compile(optimizer=Adam(learning_rate=learning_rate),
                   loss='categorical_crossentropy', metrics=['accuracy'])
 
     history = model.fit(
