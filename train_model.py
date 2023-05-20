@@ -1,13 +1,17 @@
 from keras.layers import Conv2D, MaxPooling2D, Dropout
 import numpy as np
+import math
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
-from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers.legacy import Adam
 from tensorflow.keras.callbacks import CSVLogger
 from tensorflow.keras.utils import plot_model
+from tensorflow.keras.preprocessing.image import img_to_array, load_img
+from tensorflow.keras.models import load_model
 
 def load_data():
     # Load data from .npy files
@@ -22,18 +26,17 @@ def load_data():
     # Add a channel dimension to X
     X = np.expand_dims(X, axis=-1)
 
-    # Convert Y to categorical (one-hot encoding) if necessary
-    # Adjust the condition as necessary
+    # Convert Y to categorical (one-hot encoding)
     if len(Y.shape) == 1 or Y.shape[1] != 10:
         Y = to_categorical(Y)
 
     print("New Y shape:", Y.shape)  # Check new Y shape
 
-    # Split data into training and validation sets
-    X_train, X_val, Y_train, Y_val = train_test_split(
-        X, Y, test_size=0.2, random_state=42)
+    # Split data into training validation and test sets
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42) # 60% training, 20% validation and 20% testing
+    X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.25, random_state=42)
 
-    return X_train, X_val, Y_train, Y_val
+    return X_train, X_val, X_test, Y_train, Y_val, Y_test 
 
 
 
@@ -124,7 +127,7 @@ def define_model():
 def compile_and_train_model(model, X_train, X_val, Y_train, Y_val):
     learning_rate = 0.0002
     batch_size = 64
-    epochs = 500
+    epochs = 50
 
     csv_logger = CSVLogger(f'training_log_lr={learning_rate}_batch={batch_size}_epochs={epochs}.csv',
                            append=True, separator=';')
@@ -138,7 +141,7 @@ def compile_and_train_model(model, X_train, X_val, Y_train, Y_val):
         batch_size=batch_size,
         epochs=epochs,
         validation_data=(X_val, Y_val),
-        callbacks=[csv_logger])  # Add this line
+        callbacks=[csv_logger])
     return history
 
 
@@ -190,14 +193,78 @@ def print_summary(history):
         "final_val_loss": history.history['val_loss'][-1],
     }
 
+def test_model(model, X_test, Y_test):
+    # Mappings of outputs
+    mappings = {1: 0, 4: 1, 8: 2, 7: 3, 6: 4, 9: 5, 3: 6, 2: 7, 5: 8, 0: 9}
+
+    # Making predictions on the testing data
+    print("[INFO] Predicting sign language digits...")
+    predictions = model.predict(X_test, batch_size=64)
+
+    # Gets the index of the label with the highest predicted probability
+    predIdxs = np.argmax(predictions, axis=1)
+    # Update predicted indices using the mappings
+    predIdxs = np.array([mappings[pred] for pred in predIdxs])
+
+    # Gets the index of the actual label
+    trueIdxs = np.argmax(Y_test, axis=1)
+    # Update true indices using the mappings
+    trueIdxs = np.array([mappings[true] for true in trueIdxs])
+
+    # perform classification report
+    print(classification_report(trueIdxs, predIdxs, target_names=[str(i) for i in range(10)]))
+    
+    return
+
+def visualise_Predictions(model, X_test, Y_test):
+    # Mappings of outputs
+    mappings = {1: 0, 4: 1, 8: 2, 7: 3, 6: 4, 9: 5, 3: 6, 2: 7, 5: 8, 0: 9}
+
+    predictions = model.predict(X_test, batch_size=64)
+
+    # Gets the index of the label with the highest predicted probability
+    predIdxs = np.argmax(predictions, axis=1)
+    # Update predicted indices using the mappings
+    predIdxs = np.array([mappings[pred] for pred in predIdxs])
+    # Gets the index of the actual label
+    trueIdxs = np.argmax(Y_test, axis=1)
+    # Update true indices using the mappings
+    trueIdxs = np.array([mappings[true] for true in trueIdxs])
+
+    # Visualize the first 30 images in X_test
+    num_images = 30
+    num_rows = math.ceil(num_images / 5)
+    fig, axs = plt.subplots(num_rows, 5, figsize=(15, num_rows * 3))
+    
+    for i in range(num_images):
+        image = X_test[i]
+        label_true = trueIdxs[i]
+        label_pred = predIdxs[i]
+        if num_rows > 1:
+            ax = axs[i // 5, i % 5]
+        else:
+            ax = axs[i % 5]
+        ax.imshow(image.squeeze(), cmap='gray')
+        ax.set_title(f'True: {label_true}, Pred: {label_pred}')
+        ax.axis('off')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    return
 
 def main():
-    X_train, X_val, Y_train, Y_val = load_data()
+    X_train, X_val, X_test, Y_train, Y_val, Y_test = load_data()
     model = define_model()
     history = compile_and_train_model(model, X_train, X_val, Y_train, Y_val)
+    model.save("network.h5") # Save the model
+    test_model(model, X_test, Y_test) # Testing the model with test data
     plot_results(history, "Test2_0.0003_64_500")
     results = print_summary(history)
-
+    
+    # model = load_model("network.h5") # Loading the model
+    test_model(model, X_test, Y_test) # Testing the model with test data
+    visualise_Predictions(model, X_test, Y_test) # Visulising the predictions in the test set
 
 if __name__ == "__main__":
     main()
