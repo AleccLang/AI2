@@ -1,3 +1,6 @@
 numpy
-torch
+keras
+tensorflow
+seaborn
+matplotlib
 scikit-learn

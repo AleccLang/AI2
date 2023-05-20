@@ -1,9 +1,11 @@
-from keras.layers import Conv2D, MaxPooling2D, Dropout
 import numpy as np
 import math
+import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from keras.layers import Conv2D, MaxPooling2D, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
@@ -253,18 +255,47 @@ def visualise_Predictions(model, X_test, Y_test):
     
     return
 
+def plot_confusion_matrix(model, X_test, Y_test):
+    # Mappings of outputs
+    mappings = {1: 0, 4: 1, 8: 2, 7: 3, 6: 4, 9: 5, 3: 6, 2: 7, 5: 8, 0: 9}
+
+    predictions = model.predict(X_test, batch_size=64)
+
+    # Gets the index of the label with the highest predicted probability
+    predIdxs = np.argmax(predictions, axis=1)
+    # Update predicted indices using the mappings
+    predIdxs = np.array([mappings[pred] for pred in predIdxs])
+    
+    # Gets the index of the actual label
+    trueIdxs = np.argmax(Y_test, axis=1)
+    # Update true indices using the mappings
+    trueIdxs = np.array([mappings[true] for true in trueIdxs])
+
+    # Compute confusion matrix
+    cm = confusion_matrix(trueIdxs, predIdxs)
+
+    # Plot confusion matrix
+    plt.figure(figsize=(10, 10))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    plt.title('Confusion Matrix')
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.savefig(f'confusionMatrix.png')
+    plt.show()
+
 def main():
     X_train, X_val, X_test, Y_train, Y_val, Y_test = load_data()
-    model = define_model()
-    history = compile_and_train_model(model, X_train, X_val, Y_train, Y_val)
-    model.save("network.h5") # Save the model
-    test_model(model, X_test, Y_test) # Testing the model with test data
-    plot_results(history, "Test2_0.0003_64_500")
-    results = print_summary(history)
+    # model = define_model()
+    # history = compile_and_train_model(model, X_train, X_val, Y_train, Y_val)
+    # model.save("network.h5") # Save the model
+    # test_model(model, X_test, Y_test) # Testing the model with test data
+    # plot_results(history, "Test2_0.0003_64_500")
+    # results = print_summary(history)
     
-    # model = load_model("network.h5") # Loading the model
+    model = load_model("network.h5") # Loading the model
+    plot_confusion_matrix(model, X_test, Y_test)
     test_model(model, X_test, Y_test) # Testing the model with test data
-    visualise_Predictions(model, X_test, Y_test) # Visulising the predictions in the test set
+    #visualise_Predictions(model, X_test, Y_test) # Visulising the predictions in the test set
 
 if __name__ == "__main__":
     main()
